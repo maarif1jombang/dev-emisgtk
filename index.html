@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peta Situs - Layout</title>
+    <title>Peta Situs - Akun GTK</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Inter -->
@@ -66,6 +66,15 @@
             0% { transform: translateX(0); }
             100% { transform: translateX(-100%); }
         }
+
+        /* Menyembunyikan scrollbar untuk tab horizontal agar lebih rapi */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
     </style>
 </head>
 <body class="text-gray-800 antialiased pb-20">
@@ -98,8 +107,8 @@
 
             </div>
 
-            <!-- Header Titles (Collapsible) -->
-            <div id="header-titles" class="transition-all duration-300 ease-in-out overflow-hidden max-h-[150px] opacity-100">
+            <!-- Header Titles (Normal - Tidak lagi disembunyikan saat scroll) -->
+            <div id="header-titles">
                 <div class="pb-2 md:pb-4">
                     <h1 class="text-xl md:text-2xl font-bold text-gray-900 mb-1">Peta Situs</h1>
                     <p class="text-gray-500 text-xs md:text-sm">Daftar semua menu dan panduan alur kerja yang tersedia untuk Anda</p>
@@ -107,18 +116,21 @@
             </div>
 
             <!-- Control Bar: Tabs & Search -->
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 md:gap-4 pb-2">
+            <div class="flex flex-row items-center justify-between gap-2 md:gap-4 pb-2">
                 
                 <!-- Tabs (Dirender oleh JS agar statenya reaktif) -->
-                <div class="flex items-center gap-2 md:gap-4 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0" id="tabs-container">
+                <div class="flex items-center gap-2 md:gap-4 overflow-x-auto flex-1 hide-scrollbar" id="tabs-container">
                     <!-- Isi Tab akan digenerate otomatis -->
                 </div>
                 
                 <!-- Search Bar -->
-                <div class="relative w-full sm:w-72 shrink-0 mb-1 sm:mb-0">
-                    <i data-lucide="search" class="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+                <div class="relative shrink-0">
+                    <!-- Wrapper untuk memastikan icon berada di tengah ukuran 40px -->
+                    <div class="absolute left-0 top-0 w-10 h-10 flex items-center justify-center pointer-events-none z-10">
+                        <i data-lucide="search" class="w-4 h-4 text-gray-400"></i>
+                    </div>
                     <input type="text" id="searchInput" placeholder="Cari menu atau panduan..." 
-                           class="w-full pl-10 pr-4 py-2 bg-white border border-gray-200 rounded-full text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition-all shadow-sm placeholder-gray-400">
+                           class="h-10 w-10 sm:w-72 px-0 sm:pl-10 sm:pr-4 bg-white border border-gray-200 rounded-full text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition-all duration-300 shadow-sm placeholder-transparent sm:placeholder-gray-400 cursor-pointer sm:cursor-text focus:w-[200px] sm:focus:w-72 focus:pl-10 focus:pr-4 focus:placeholder-gray-400 focus:cursor-text [&:not(:placeholder-shown)]:w-[200px] sm:[&:not(:placeholder-shown)]:w-72 [&:not(:placeholder-shown)]:pl-10 [&:not(:placeholder-shown)]:pr-4 [&:not(:placeholder-shown)]:placeholder-gray-400">
                 </div>
 
             </div>
@@ -375,8 +387,8 @@
         function renderTabs() {
             const container = document.getElementById('tabs-container');
             
-            // Menyimpan styling dasar tab ke dalam satu variabel agar ukurannya konsisten (padding px-4 md:px-5)
-            const baseClass = "px-4 md:px-5 py-2 md:py-2.5 rounded-full font-medium text-xs md:text-sm flex items-center justify-center gap-2 transition-colors whitespace-nowrap outline-none focus:ring-2 focus:ring-brand focus:ring-offset-1";
+            // Menyimpan styling dasar tab ke dalam satu variabel. Ditambahkan h-10 agar selalu konsisten dengan kolom pencarian
+            const baseClass = "h-10 px-4 md:px-5 rounded-full font-medium text-xs md:text-sm flex items-center justify-center gap-2 transition-colors whitespace-nowrap outline-none focus:ring-2 focus:ring-brand focus:ring-offset-1";
             const activeClass = "bg-brand text-white shadow-sm";
             const inactiveClass = "bg-gray-200 text-gray-600 hover:bg-gray-300";
 
@@ -599,21 +611,12 @@
 
         // --- SCROLL EVENT UNTUK STICKY HEADER ---
         window.addEventListener('scroll', () => {
-            const headerTitles = document.getElementById('header-titles');
             const stickyHeader = document.getElementById('sticky-header');
             
             if (window.scrollY > 15) {
-                // Sembunyikan teks Peta Situs saat di-scroll ke bawah
-                headerTitles.classList.replace('max-h-[150px]', 'max-h-0');
-                headerTitles.classList.replace('opacity-100', 'opacity-0');
-                
                 // Tambahkan sedikit bayangan di header agar batasnya terlihat saat mengambang
                 stickyHeader.classList.add('shadow-[0_10px_20px_-10px_rgba(0,0,0,0.08)]');
             } else {
-                // Tampilkan kembali teks Peta Situs saat kembali ke atas
-                headerTitles.classList.replace('max-h-0', 'max-h-[150px]');
-                headerTitles.classList.replace('opacity-0', 'opacity-100');
-                
                 // Hilangkan bayangan
                 stickyHeader.classList.remove('shadow-[0_10px_20px_-10px_rgba(0,0,0,0.08)]');
             }
