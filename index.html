@@ -421,27 +421,29 @@
                     hasResult = true;
                     html += `
                     <div class="menu-section">
-                        <div class="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
-                            <i data-lucide="${group.icon}" class="w-5 h-5 md:w-6 md:h-6 text-brand"></i>
-                            <h2 class="text-base md:text-lg font-bold text-gray-800">${group.section}</h2>
-                            <span class="bg-brand text-white text-[10px] md:text-xs font-bold px-2 py-0.5 rounded-full">${filteredItems.length}</span>
+                        <div class="flex items-center gap-2 mb-2">
+                            <i data-lucide="${group.icon}" class="w-4 h-4 md:w-5 md:h-5 text-brand"></i>
+                            <h2 class="text-[13px] md:text-lg font-bold text-gray-800">${group.section}</h2>
+                            <span class="bg-brand text-white text-[9px] md:text-xs font-bold px-1.5 py-0.5 rounded-full">${filteredItems.length}</span>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-3">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5 md:gap-3">
                     `;
                     
                     filteredItems.forEach(item => {
                         const targetUrl = item.url ? item.url : '#';
                         html += `
-                            <a href="${targetUrl}" target="_blank" rel="noopener noreferrer" class="bg-white border border-gray-200 rounded-xl p-3 md:p-3.5 flex items-center gap-3 md:gap-4 hover:border-brand/40 hover:shadow-md transition-all duration-200 cursor-pointer group text-left outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2">
-                                <div class="bg-brand-light text-brand p-2 md:p-3 rounded-lg shrink-0 group-hover:bg-brand group-hover:text-white transition-colors duration-200">
-                                    <i data-lucide="${item.icon}" class="w-4 h-4 md:w-5 md:h-5"></i>
+                            <a href="${targetUrl}" target="_blank" rel="noopener noreferrer" class="bg-white border border-gray-200 rounded-xl p-2.5 md:p-3 flex items-center justify-between hover:border-brand hover:shadow-md transition-all duration-200 cursor-pointer group text-left outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2">
+                                <div class="flex items-center gap-2.5 md:gap-3 flex-1 min-w-0">
+                                    <div class="w-9 h-9 md:w-10 md:h-10 bg-brand-light text-brand rounded-full flex items-center justify-center shrink-0 group-hover:bg-brand group-hover:text-white transition-colors duration-200">
+                                        <i data-lucide="${item.icon}" class="w-4.5 h-4.5 md:w-5 md:h-5"></i>
+                                    </div>
+                                    <div class="flex flex-col justify-center flex-1 min-w-0">
+                                        <h3 class="font-semibold text-gray-800 text-[13px] md:text-sm truncate group-hover:text-brand transition-colors duration-200 leading-tight">${item.title}</h3>
+                                        <p class="text-[11px] md:text-xs text-gray-500 mt-0.5 leading-tight line-clamp-1">${item.desc}</p>
+                                    </div>
                                 </div>
-                                <div class="flex-1 min-w-0 py-0.5">
-                                    <h3 class="font-semibold text-gray-800 text-[14px] md:text-[15px] truncate mb-0.5 group-hover:text-brand transition-colors duration-200">${item.title}</h3>
-                                    <p class="text-[11px] md:text-[12px] text-gray-500 leading-tight line-clamp-2">${item.desc}</p>
-                                </div>
-                                <div class="text-gray-300 shrink-0 group-hover:text-brand transition-colors duration-200 transform group-hover:translate-x-1">
-                                    <i data-lucide="arrow-right" class="w-4 h-4 md:w-5 md:h-5"></i>
+                                <div class="text-gray-300 shrink-0 group-hover:text-brand transition-colors duration-200 transform group-hover:translate-x-1 ml-2">
+                                    <i data-lucide="arrow-right" class="w-3.5 h-3.5 md:w-4 md:h-4"></i>
                                 </div>
                             </a>
                         `;
@@ -500,8 +502,8 @@
                                 <i data-lucide="trending-up" class="w-5 h-5 md:w-6 md:h-6"></i>
                             </div>
                             <div class="flex-1 min-w-0 pr-3 md:pr-4">
-                                <h3 class="font-bold text-[14px] md:text-[15px] text-gray-900 mb-0.5">${flow.title}</h3>
-                                <p class="text-[11px] md:text-[12px] text-gray-500 truncate md:whitespace-normal md:line-clamp-1">${flow.desc}</p>
+                                <h3 class="font-bold text-[13px] md:text-sm text-gray-900 truncate mb-0.5">${flow.title}</h3>
+                                <p class="text-[11px] md:text-xs text-gray-500 truncate">${flow.desc}</p>
                             </div>
                             <div class="shrink-0 bg-brand text-white text-[10px] md:text-[11px] font-bold px-2 md:px-2.5 py-1 rounded-full whitespace-nowrap">
                                 ${flow.stepsCount} step
