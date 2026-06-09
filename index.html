@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peta Situs - Akun GTK</title>
+    <title>Peta Situs Dev-EmisGTK</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Inter -->
@@ -77,15 +77,15 @@
         }
     </style>
 </head>
-<body class="text-gray-800 antialiased pb-20">
+<body class="text-gray-800 antialiased pb-10">
 
     <div class="max-w-5xl mx-auto p-3 sm:p-6 lg:p-8">
         
         <!-- STICKY HEADER WRAPPER -->
-        <div id="sticky-header" class="sticky top-0 z-50 bg-[#FAFBFC] pt-3 sm:pt-6 lg:pt-8 pb-3 -mt-3 sm:-mt-6 lg:-mt-8 -mx-3 sm:-mx-6 lg:-mx-8 px-3 sm:px-6 lg:px-8 mb-2 transition-shadow duration-300">
+        <div id="sticky-header" class="sticky top-0 z-50 bg-[#FAFBFC] pt-4 pb-3 -mt-3 sm:-mt-6 lg:-mt-8 -mx-3 sm:-mx-6 lg:-mx-8 px-3 sm:px-6 lg:px-8 mb-2 transition-shadow duration-300">
             
             <!-- Breadcrumb & Running Text -->
-            <div class="bg-white border border-gray-200 rounded-lg p-3 md:p-3.5 mb-3 md:mb-4 flex items-center text-xs md:text-sm text-gray-500 shadow-sm w-full">
+            <div class="bg-white border border-gray-200 rounded-xl p-3 md:p-3.5 mb-3 md:mb-4 flex items-center text-xs md:text-sm text-gray-500 shadow-sm w-full">
                 
                 <!-- Breadcrumb (Static) -->
                 <div class="flex items-center shrink-0 pr-3 md:pr-4">
@@ -107,29 +107,28 @@
 
             </div>
 
-            <!-- Header Titles (Normal - Tidak lagi disembunyikan saat scroll) -->
+            <!-- Header Titles -->
             <div id="header-titles">
                 <div class="pb-2 md:pb-4">
                     <h1 class="text-xl md:text-2xl font-bold text-gray-900 mb-1">Peta Situs</h1>
-                    <p class="text-gray-500 text-xs md:text-sm">Daftar semua menu dan panduan alur kerja yang tersedia untuk Anda</p>
+                    <p class="text-gray-500 text-xs md:text-sm">Daftar semua menu yang tersedia untuk Anda</p>
                 </div>
             </div>
 
             <!-- Control Bar: Tabs & Search -->
             <div class="flex flex-row items-center justify-between gap-2 md:gap-4 pb-2">
                 
-                <!-- Tabs (Dirender oleh JS agar statenya reaktif) -->
+                <!-- Tabs (Dirender oleh JS) -->
                 <div class="flex items-center gap-2 md:gap-4 overflow-x-auto flex-1 hide-scrollbar" id="tabs-container">
                     <!-- Isi Tab akan digenerate otomatis -->
                 </div>
                 
                 <!-- Search Bar -->
                 <div class="relative shrink-0">
-                    <!-- Wrapper untuk memastikan icon berada di tengah ukuran 40px -->
                     <div class="absolute left-0 top-0 w-9 h-9 flex items-center justify-center pointer-events-none z-10">
                         <i data-lucide="search" class="w-4 h-4 text-gray-400"></i>
                     </div>
-                    <input type="text" id="searchInput" placeholder="Cari menu atau panduan..." 
+                    <input type="text" id="searchInput" placeholder="Cari menu..." 
                            class="h-9 w-9 sm:w-72 px-0 sm:pl-10 sm:pr-4 bg-white border border-gray-200 rounded-full text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition-all duration-300 shadow-sm placeholder-transparent sm:placeholder-gray-400 cursor-pointer sm:cursor-text focus:w-[200px] sm:focus:w-72 focus:pl-10 focus:pr-4 focus:placeholder-gray-400 focus:cursor-text [&:not(:placeholder-shown)]:w-[200px] sm:[&:not(:placeholder-shown)]:w-72 [&:not(:placeholder-shown)]:pl-10 [&:not(:placeholder-shown)]:pr-4 [&:not(:placeholder-shown)]:placeholder-gray-400">
                 </div>
 
@@ -137,18 +136,18 @@
         </div>
 
         <!-- Containers -->
+        <div id="admin-container" class="space-y-4 md:space-y-6 hidden">
+            <!-- Konten Daftar Menu Admin -->
+        </div>
+
         <div id="menu-container" class="space-y-4 md:space-y-6 hidden">
             <!-- Konten Daftar Menu -->
-        </div>
-        
-        <div id="flow-container" class="space-y-3 md:space-y-4 hidden">
-            <!-- Konten Panduan Flow (Accordion) -->
         </div>
 
     </div>
 
     <script>
-        // ======= DATA MENU =======
+        // ======= DATA MENU GTK =======
         const defaultUrl = "https://dev-emisgtk.kemenag.go.id/sitemaps/";
         
         const menuData = [
@@ -160,14 +159,15 @@
                     { title: "Data Diri (Biodata)", desc: "Perbarui data pribadi (identitas, pendidikan, NPWP, dll)", icon: "user-circle", url: "https://dev-emisgtk.kemenag.go.id/identitas/biodata/" },
 					{ title: "Pengajuan Verval NIK", desc: "Ajukan verifikasi NIK jika data Dukcapil belum valid, dengan mengunggah dokumen KTP", icon: "id-card", url: "https://dev-emisgtk.kemenag.go.id/identitas/pengajuan-nik/" },
                     { title: "Aktivasi PTK", desc: "Aktivasi akun PTK untuk mengakses fitur lengkap", icon: "user-check", url: "https://dev-emisgtk.kemenag.go.id/ptk/aktivasi-ptk/" },
+					{ title: "Akun GWS", desc: "Lihat kredensial Akun Google Workspace for Education (email + password) untuk login ke layanan Google Workspace madrasah", icon: "mail", url: "https://dev-emisgtk.kemenag.go.id/ptk/aktivasi-ptk/" },
 					{ title: "Verval Inpassing", desc: "Verifikasi validasi data inpassing untuk PTK Non-ASN", icon: "award", url: "https://dev-emisgtk.kemenag.go.id/tunjangan/inpassing/" }
                 ]
             },
             {
                 section: "Master Data", icon: "database",
                 items: [
-                    { title: "Hari Libur Mingguan", desc: "Atur hari libur mingguan madrasah", icon: "calendar-check", url: "https://dev-emisgtk.kemenag.go.id/master/hari-libur-mingguan/" },
-                    { title: "Hari Libur Akademik", desc: "Atur hari libur akademik madrasah", icon: "calendar-days", url: "https://dev-emisgtk.kemenag.go.id/master/hari-libur-akademik/" }
+                    { title: "Hari Libur Mingguan", desc: "Atur hari libur mingguan madrasah", icon: "calendar-x", url: "https://dev-emisgtk.kemenag.go.id/master/hari-libur-mingguan/" },
+                    { title: "Hari Libur Akademik", desc: "Atur hari libur akademik madrasah", icon: "calendar-clock", url: "https://dev-emisgtk.kemenag.go.id/master/hari-libur-akademik/" }
                 ]
             },
             {
@@ -175,14 +175,14 @@
                 items: [
                     { title: "Data Ijazah", desc: "Kelola data ijazah pendidikan", icon: "graduation-cap", url: "https://dev-emisgtk.kemenag.go.id/ptk/ijazah/" },
                     { title: "Data Sertifikasi", desc: "Kelola data sertifikasi pendidik", icon: "award", url: "https://dev-emisgtk.kemenag.go.id/ptk/sertifikasi/" },
-					{ title: "Riwayat Pelatihan", desc: "Kelola riwayat pelatihan eksternal yang pernah diikuti", icon: "award", url: "https://dev-emisgtk.kemenag.go.id/diklat/pelatihan-eksternal/" }
+					{ title: "Riwayat Pelatihan", desc: "Kelola riwayat pelatihan eksternal yang pernah diikuti", icon: "file-badge", url: "https://dev-emisgtk.kemenag.go.id/diklat/pelatihan-eksternal/" }
                 ]
             },
             {
                 section: "Beban Kerja", icon: "briefcase",
                 items: [
                     { title: "Tugas Tambahan", desc: "Lihat tugas tambahan yang diemban (Kepala, Wakil, Wali Kelas, dll)", icon: "briefcase-business", url: "https://dev-emisgtk.kemenag.go.id/ptk/tugas-tambahan/self/" },
-                    { title: "Jadwal Mengajar", desc: "Lihat jadwal mengajar yang telah diinput oleh Admin Sekolah", icon: "calendar-clock", url: "https://dev-emisgtk.kemenag.go.id/ptk/jadwal-mengajar/" },
+                    { title: "Jadwal Mengajar", desc: "Lihat jadwal mengajar yang telah diinput oleh Admin Sekolah", icon: "calendar-days", url: "https://dev-emisgtk.kemenag.go.id/ptk/jadwal-mengajar/" },
 					{ title: "Perhitungan JTM", desc: "Lihat perhitungan Jumlah Tatap Muka", icon: "calculator", url: "https://dev-emisgtk.kemenag.go.id/ptk/jtm/" }
                 ]
             },
@@ -190,29 +190,30 @@
                 section: "Satminkal", icon: "shield-check",
                 items: [
                     { title: "Pengajuan Verval Satminkal", desc: "Ajukan verifikasi dan validasi satminkal", icon: "shield-check", url: "https://dev-emisgtk.kemenag.go.id/ptk/non-satminkal/pengajuan/verval-satminkal/" },
-					{ title: "Mutasi - Alih Fungsi", desc: "Daftar pengajuan alih fungsi", icon: "shield-check", url: "https://dev-emisgtk.kemenag.go.id/ptk/mutasi-alih-fungsi/" }
+					{ title: "Mutasi - Alih Fungsi", desc: "Daftar pengajuan alih fungsi", icon: "arrow-left-right", url: "https://dev-emisgtk.kemenag.go.id/ptk/mutasi-alih-fungsi/" }
                 ]
             },
 			{
                 section: "PPG", icon: "file-text",
                 items: [
-                    { title: "Pengecekan Persyaratan", desc: "Cek kelengkapan persyaratan PPG Dalam Jabatan", icon: "file-text", url: "https://dev-emisgtk.kemenag.go.id/sertifikasi/ppg/ptk/" },
-                    { title: "Validasi Linieritas Ijazah", desc: "Validasi linieritas ijazah dengan mata pelajaran yang diampu", icon: "id-card", url: "https://dev-emisgtk.kemenag.go.id/sertifikasi/ppg/ptk/linieritas/" },
-                    { title: "Pengajuan Mapel PPG", desc: "Ajukan mata pelajaran yang akan diambil di PPG", icon: "shield-check", url: "https://dev-emisgtk.kemenag.go.id/sertifikasi/ppg/ptk/pengajuan-mapel/" }
+                    { title: "Pengecekan Persyaratan", desc: "Cek kelengkapan persyaratan PPG Dalam Jabatan", icon: "list-todo", url: "https://dev-emisgtk.kemenag.go.id/sertifikasi/ppg/ptk/" },
+                    { title: "Validasi Linieritas Ijazah", desc: "Validasi linieritas ijazah dengan mata pelajaran yang diampu", icon: "graduation-cap", url: "https://dev-emisgtk.kemenag.go.id/sertifikasi/ppg/ptk/linieritas/" },
+                    { title: "Pengajuan Mapel PPG", desc: "Ajukan mata pelajaran yang akan diambil di PPG", icon: "square-pen", url: "https://dev-emisgtk.kemenag.go.id/sertifikasi/ppg/ptk/pengajuan-mapel/" }
                 ]
             },
             {
                 section: "Persyaratan TPG", icon: "file-text",
                 items: [
                     { title: "Pengajuan SKMT", desc: "Ajukan Surat Keterangan Melaksanakan Tugas", icon: "file-text", url: "https://dev-emisgtk.kemenag.go.id/tunjangan/skmt/" },
+					{ title: "Pengajuan SKBK", desc: "Ajukan Surat Keterangan Beban Kerja", icon: "clipboard-list", url: "https://dev-emisgtk.kemenag.go.id/tunjangan/skbk/" },
                     { title: "Pengajuan NRG", desc: "Ajukan Nomor Registrasi Guru", icon: "id-card", url: "https://dev-emisgtk.kemenag.go.id/tunjangan/nrg/" },
-                    { title: "Verval NRG", desc: "Verifikasi validasi Nomor Registrasi Guru", icon: "shield-check", url: "https://dev-emisgtk.kemenag.go.id/tunjangan/ptk/verval-nrg/" },
-                    { title: "Pengajuan SKBK", desc: "Ajukan Surat Keterangan Beban Kerja", icon: "file-text", url: "https://dev-emisgtk.kemenag.go.id/tunjangan/skbk/" },
-                    { title: "Dispensasi JTM", desc: "Ajukan dispensasi Jumlah Tatap Muka", icon: "scale", url: "https://dev-emisgtk.kemenag.go.id/ptk/dispensasi-jtm/" }
+                    { title: "Verval NRG", desc: "Verifikasi validasi Nomor Registrasi Guru", icon: "shield-check", url: "https://dev-emisgtk.kemenag.go.id/tunjangan/ptk/verval-nrg/" },                    
+                    { title: "Dispensasi JTM", desc: "Ajukan dispensasi Jumlah Tatap Muka", icon: "scale", url: "https://dev-emisgtk.kemenag.go.id/ptk/dispensasi-jtm/" },
+					{ title: "Update Golongan & MKG", desc: "Ajukan pembaruan data Golongan & Masa Kerja Golongan", icon: "id-card", url: "https://dev-emisgtk.kemenag.go.id/tunjangan/verval-golongan-mkg/ptk/" }
                 ]
             },
             {
-                section: "Hasil TPG", icon: "file-search",
+                section: "Hasil TPG", icon: "file-badge",
                 items: [
                     { title: "SKAKPT", desc: "Surat Keterangan Aktif Kumulatif Penilaian Tahunan", icon: "file-badge", url: "https://dev-emisgtk.kemenag.go.id/tunjangan/skakpt/" }
                 ]
@@ -233,134 +234,78 @@
                 ]
             }
         ];
-
-        // ======= DATA FLOW =======
-        const flowData = [
+		
+		// ======= DATA MENU ADMIN =======
+        const menuAdminData = [
             {
-                id: 'tpg',
-                title: 'Flow Persyaratan TPG Per Semester',
-                desc: 'Langkah-langkah yang harus dilakukan PTK setiap semester untuk memenuhi persyaratan tunjangan profesi.',
-                stepsCount: 12,
-                steps: [
-                    {
-                        title: 'Aktivasi PTK',
-                        desc: 'Pastikan akun PTK sudah diaktivasi. Tanpa aktivasi, fitur dokumen dan persyaratan TPG tidak dapat diakses.',
-                        info: 'Aktivasi hanya perlu dilakukan sekali, tidak perlu diulang setiap semester',
-                        button: 'Aktivasi PTK', url: "https://dev-emisgtk.kemenag.go.id/ptk/aktivasi-ptk/", isDotted: false
-                    },
-                    {
-                        title: 'Biodata',
-                        desc: 'Pastikan data pribadi (identitas, pendidikan, NPWP) sudah lengkap dan benar.',
-                        button: 'Biodata', url: "https://dev-emisgtk.kemenag.go.id/identitas/biodata/", isDotted: false
-                    },
-                    {
-                        title: 'Cek Data Ijazah & Sertifikasi',
-                        desc: 'Pastikan data ijazah dan sertifikasi pendidik sudah lengkap.',
-                        button: 'Data Ijazah', url: "https://dev-emisgtk.kemenag.go.id/ptk/ijazah/", isDotted: false
-                    },
-                    {
-                        title: 'Cek Jadwal Mengajar',
-                        desc: 'Pastikan jadwal mengajar sudah diinput oleh Admin Sekolah.',
-                        info: 'Jadwal mengajar diinput oleh Admin Sekolah (Kepala Madrasah)',
-                        button: 'Jadwal Mengajar', url: "https://dev-emisgtk.kemenag.go.id/ptk/jadwal-mengajar/", isDotted: false
-                    },
-                    {
-                        title: 'Cek Perhitungan JTM',
-                        desc: 'Periksa perhitungan Jumlah Tatap Muka. Minimal 24 JTM untuk memenuhi syarat TPG.',
-                        button: 'Perhitungan JTM', url: "https://dev-emisgtk.kemenag.go.id/ptk/jtm/", isDotted: false
-                    },
-                    {
-                        title: 'Ajukan Dispensasi JTM',
-                        desc: 'Jika JTM kurang dari 24, ajukan dispensasi JTM dengan alasan yang sesuai.',
-                        info: 'Opsional — hanya jika JTM kurang dari 24',
-                        button: 'Dispensasi JTM', url: "https://dev-emisgtk.kemenag.go.id/ptk/dispensasi-jtm/", isDotted: true
-                    },
-                    {
-                        title: 'Ajukan SKMT',
-                        desc: 'Ajukan Surat Keterangan Melaksanakan Tugas untuk periode semester aktif.',
-                        button: 'Pengajuan SKMT', url: "https://dev-emisgtk.kemenag.go.id/tunjangan/skmt/", isDotted: false
-                    },
-                    {
-                        title: 'Ajukan SKBK',
-                        desc: 'Ajukan Surat Keterangan Beban Kerja untuk periode semester aktif.',
-                        button: 'Pengajuan SKBK', url: "https://dev-emisgtk.kemenag.go.id/tunjangan/skbk/", isDotted: false
-                    },
-                    {
-                        title: 'Ajukan NRG',
-                        desc: 'Ajukan Nomor Registrasi Guru jika belum memiliki NRG.',
-                        info: 'Opsional — hanya jika belum memiliki NRG',
-                        button: 'Pengajuan NRG', url: "https://dev-emisgtk.kemenag.go.id/tunjangan/nrg/", isDotted: true
-                    },
-                    {
-                        title: 'Verval Inpassing',
-                        desc: 'Verifikasi dan validasi data inpassing untuk PTK non-PNS.',
-                        info: 'Opsional — hanya untuk PTK non-PNS',
-                        button: 'Verval Inpassing', url: "https://dev-emisgtk.kemenag.go.id/tunjangan/inpassing/", isDotted: true
-                    },
-                    {
-                        title: 'Menunggu Persetujuan',
-                        desc: 'Menunggu persetujuan SKMT dan SKBK dari Kepala Madrasah, lalu verifikasi dari Admin Kab/Kota.',
-                        isDotted: true
-                    },
-                    {
-                        title: 'Cek SKAKPT',
-                        desc: 'Setelah semua persyaratan disetujui, cek hasil SKAKPT.',
-                        info: 'Hanya untuk PTK yang sudah bersertifikasi',
-                        button: 'SKAKPT', url: "https://dev-emisgtk.kemenag.go.id/tunjangan/skakpt/", isDotted: false
-                    }
+                section: "Menu Utama", icon: "home",
+                items: [
+                    { title: "Beranda", desc: "Halaman utama dashboard", icon: "home", url: "https://dev-emisgtk.kemenag.go.id/dashboard/" },
+                    { title: "Detail Madrasah", desc: "Lihat detail informasi madrasah sendiri", icon: "building-2", url: "https://dev-emisgtk.kemenag.go.id/instansi/daftar-sm/my/" },
+                    { title: "Aktivasi Madrasah", desc: "Dashboard aktivasi dan status verval madrasah per semester", icon: "shield-check", url: "https://dev-emisgtk.kemenag.go.id/instansi/aktivasi-sm/" }
                 ]
             },
             {
-                id: 'insentif',
-                title: 'Flow Pengajuan Insentif Non-ASN',
-                desc: 'Langkah-langkah pengajuan tunjangan insentif bagi Guru Bukan PNS yang belum sertifikasi.',
-                stepsCount: 7,
-                steps: [
-                    {
-                        title: 'Aktivasi PTK',
-                        desc: 'Pastikan akun PTK sudah diaktivasi agar dapat mengakses fitur pengajuan.',
-                        button: 'Aktivasi PTK', url: "https://dev-emisgtk.kemenag.go.id/ptk/aktivasi-ptk/", isDotted: false
-                    },
-                    {
-                        title: 'Cek Persyaratan',
-                        desc: 'Sistem otomatis mengecek 13 persyaratan: NPK, status aktif, usia, S1/D4, non-PNS, belum sertifikasi, guru tetap 2 tahun, satminkal Kemenag, JTM >= 6, dll.',
-                        button: 'Cek Persyaratan', url: "https://dev-emisgtk.kemenag.go.id/tunjangan/pengajuan-insentif/ptk/", isDotted: false
-                    },
-                    {
-                        title: 'Isi Data Rekening',
-                        desc: 'Isi data rekening bank untuk pencairan tunjangan: nama bank, cabang, nomor rekening, dan upload scan buku tabungan.',
-                        button: 'Input Rekening', url: "https://dev-emisgtk.kemenag.go.id/identitas/biodata/?tab=npwp", isDotted: false
-                    },
-                    {
-                        title: 'Konfirmasi & Kirim Ajuan',
-                        desc: 'Review data dan centang pernyataan SPTJM, lalu kirim ajuan.',
-                        isDotted: true
-                    },
-                    {
-                        title: 'Menunggu Verifikasi Kab/Kota',
-                        desc: 'Ajuan direview oleh Admin Dinas Kab/Kota. Jika ditolak, PTK dapat memperbaiki data dan mengajukan ulang.',
-                        isDotted: true
-                    },
-                    {
-                        title: 'Menunggu Penetapan Admin Pusat',
-                        desc: 'Setelah disetujui Kab/Kota, menunggu penetapan dari Admin Pusat.',
-                        isDotted: true
-                    },
-                    {
-                        title: 'Setujui SPTJM',
-                        desc: 'Setelah ditetapkan, setujui Surat Pernyataan Tanggung Jawab Mutlak untuk pencairan tunjangan.',
-                        button: 'Setujui SPTJM', url: "https://dev-emisgtk.kemenag.go.id/tunjangan/pengajuan-insentif/ptk/", isDotted: false
-                    }
+                section: "Master Data", icon: "database",
+                items: [
+                    { title: "Hari Libur Mingguan", desc: "Atur hari libur mingguan madrasah", icon: "calendar-x", url: "https://dev-emisgtk.kemenag.go.id/master/hari-libur-mingguan/" },
+                    { title: "Hari Libur Akademik", desc: "Atur hari libur akademik madrasah", icon: "calendar-clock", url: "https://dev-emisgtk.kemenag.go.id/master/hari-libur-akademik/" }
+                ]
+            },
+            {
+                section: "Pengaturan", icon: "settings",
+                items: [
+                    { title: "Manajemen Akun", desc: "Kelola akun PTK di madrasah (generate, reset password, toggle status)", icon: "user-cog", url: "https://dev-emisgtk.kemenag.go.id/akun/manajemen/sekolah/" },
+                    { title: "Monitoring Akun PTK", desc: "Pantau status pembuatan akun seluruh PTK satminkal di madrasah", icon: "line-chart", url: "https://dev-emisgtk.kemenag.go.id/akun/manajemen/sekolah/monitoring-ptk/" },
+					{ title: "Manajemen PTK", desc: "Kelola data PTK di madrasah (tambah, edit, nonaktifkan, tarik dari EMIS)", icon: "users", url: "https://dev-emisgtk.kemenag.go.id/ptk/manajemen-ptk/" }
+                ]
+            },
+            {
+                section: "Beban Kerja", icon: "briefcase",
+                items: [
+                    { title: "Tugas Tambahan", desc: "Kelola tugas tambahan dan jabatan struktural PTK (Kepala, Wakil, Wali Kelas, dll)", icon: "briefcase-business", url: "https://dev-emisgtk.kemenag.go.id/ptk/tugas-tambahan/" },
+                    { title: "Presensi PTK", desc: "Input dan rekap presensi kehadiran PTK per bulan", icon: "calendar-clock", url: "https://dev-emisgtk.kemenag.go.id/ptk/presensi/" },
+					{ title: "Pengajuan Mutasi PTK", desc: "Ajukan mutasi PTK keluar atau terima mutasi PTK masuk", icon: "arrow-left-right", url: "https://dev-emisgtk.kemenag.go.id/ptk/pengajuan-mutasi/" }
+                ]
+            },
+			{
+                section: "Kesiswaan", icon: "user",
+                items: [
+                    { title: "Data Siswa", desc: "Kelola data siswa (import Excel, kenaikan kelas)", icon: "user", url: "https://dev-emisgtk.kemenag.go.id/kesiswaan/siswa/" }
+                ]
+            },
+            {
+                section: "Kurikulum & KBM", icon: "book-open",
+                items: [
+                    { title: "Mata Pelajaran", desc: "Generate dan lihat daftar mata pelajaran madrasah berdasarkan kurikulum", icon: "file-text", url: "https://dev-emisgtk.kemenag.go.id/pembelajaran/pelajaran/" },
+                    { title: "Rombel", desc: "Kelola rombongan belajar (buat manual, import Excel, tarik dari EMIS)", icon: "users", url: "https://dev-emisgtk.kemenag.go.id/pembelajaran/rombel/" },
+                    { title: "Pengaturan Jadwal", desc: "Atur template jadwal (jam pelajaran, durasi, istirahat)", icon: "settings", url: "https://dev-emisgtk.kemenag.go.id/pembelajaran/jadwal-model/" },
+                    { title: "Plotting Guru BK", desc: "Plotting guru Bimbingan Konseling per rombel", icon: "user-square", url: "https://dev-emisgtk.kemenag.go.id/pembelajaran/plotting-guru-bk/" },
+                    { title: "Tambah Jadwal Mengajar", desc: "Input jadwal mengajar PTK (per PTK atau import Excel)", icon: "calendar-days", url: "https://dev-emisgtk.kemenag.go.id/pembelajaran/jadwal/" },
+					{ title: "Pengecekan Linearitas", desc: "Cek kesesuaian mata pelajaran yang diajarkan dengan sertifikasi PTK", icon: "check-square-2", url: "https://dev-emisgtk.kemenag.go.id/pembelajaran/linearitas/" }
+                ]
+            },
+            {
+                section: "Verifikasi Dan Validasi", icon: "badge-check",
+                items: [
+                    { title: "Madrasah", desc: "Ajukan PTK non-satminkal dari/ke madrasah lain (Kemenag)", icon: "building-2", url: "https://dev-emisgtk.kemenag.go.id/ptk/pengajuan-non-satminkal/madrasah/" },
+					{ title: "Sekolah", desc: "Ajukan PTK non-satminkal dari/ke sekolah (non-Kemenag)", icon: "building-2", url: "https://dev-emisgtk.kemenag.go.id/ptk/pengajuan-non-satminkal/sekolah/" },
+					{ title: "Verifikasi Non-Satminkal Madrasah", desc: "Verifikasi pengajuan PTK non-satminkal yang masuk ke madrasah", icon: "inbox", url: "https://dev-emisgtk.kemenag.go.id/ptk/verifikasi-non-satminkal/madrasah/" }
+                ]
+            },
+			            {
+                section: "Sync EMIS", icon: "link",
+                items: [
+                    { title: "Integrasi EMIS", desc: "Matching data PTK lokal dengan data EMIS (cocokkan SATMINKAL)", icon: "link-2", url: "https://dev-emisgtk.kemenag.go.id/ptk/integrasi-satminkal/" }
                 ]
             }
         ];
 
         // ======= STATE MANAGEMENT =======
-        let activeTab = 'menu'; // 'menu' atau 'flow'
-        let expandedFlows = new Set(); // Menyimpan ID flow yang sedang dibuka
+        let activeTab = 'menu';
         let currentSearchQuery = '';
 
-        // ======= FUNCTIONS =======
+        //        // ======= FUNCTIONS =======
         
         // Ganti Tab
         function switchTab(tab) {
@@ -368,45 +313,34 @@
             renderApp();
         }
 
-        // Buka/Tutup Accordion Flow
-        function toggleFlow(id) {
-            if (expandedFlows.has(id)) {
-                expandedFlows.delete(id);
-            } else {
-                expandedFlows.add(id);
-            }
-            renderFlowsContent(currentSearchQuery);
-            lucide.createIcons();
-        }
-
         // Render Bagian Tab Navigasi
         function renderTabs() {
             const container = document.getElementById('tabs-container');
             
-            // Menyimpan styling dasar tab ke dalam satu variabel. Ditambahkan h-9 agar selalu konsisten dengan kolom pencarian
             const baseClass = "h-9 px-4 md:px-5 rounded-full font-medium text-xs md:text-sm flex items-center justify-center gap-2 transition-colors whitespace-nowrap outline-none focus:ring-2 focus:ring-brand focus:ring-offset-1";
             const activeClass = "bg-brand text-white shadow-sm";
             const inactiveClass = "bg-gray-200 text-gray-600 hover:bg-gray-300";
 
             container.innerHTML = `
+                
                 <button onclick="switchTab('menu')" class="${baseClass} ${activeTab === 'menu' ? activeClass : inactiveClass}">
-                    <i data-lucide="layout-grid" class="w-4 h-4"></i>
-                    Daftar Menu
+                    <i data-lucide="user" class="w-4 h-4"></i>
+                    Menu GTK
                 </button>
-                <button onclick="switchTab('flow')" class="${baseClass} ${activeTab === 'flow' ? activeClass : inactiveClass}">
-                    <i data-lucide="git-merge" class="w-4 h-4"></i>
-                    Panduan Flow
+				<button onclick="switchTab('admin')" class="${baseClass} ${activeTab === 'admin' ? activeClass : inactiveClass}">
+                    <i data-lucide="shield-check" class="w-4 h-4"></i>
+                    Menu Admin
                 </button>
             `;
         }
 
-        // Render HTML untuk Daftar Menu dengan Fitur Pencarian
-        function getMenuHTML(searchQuery = '') {
+        // Render HTML untuk Daftar Menu dengan parameter data agar dapat disesuaikan (Menu atau Admin)
+        function getMenuHTML(menuSourceData, searchQuery = '') {
             let html = '';
             let hasResult = false;
             const lowerQuery = searchQuery.toLowerCase();
 
-            menuData.forEach(group => {
+            menuSourceData.forEach(group => {
                 // Filter item berdasarkan nama menu atau deskripsi
                 const filteredItems = group.items.filter(item => 
                     item.title.toLowerCase().includes(lowerQuery) || 
@@ -422,7 +356,7 @@
                             <h2 class="text-[13px] md:text-lg font-bold text-gray-800">${group.section}</h2>
                             <span class="bg-brand text-white text-[9px] md:text-xs font-bold px-1.5 py-0.5 rounded-full">${filteredItems.length}</span>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5 md:gap-3">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5 md:gap-3">
                     `;
                     
                     filteredItems.forEach(item => {
@@ -462,129 +396,24 @@
             return html;
         }
 
-        // Render HTML untuk Panduan Flow dengan Fitur Pencarian
-        function renderFlowsContent(searchQuery = '') {
-            const container = document.getElementById('flow-container');
-            let html = '';
-            let hasResult = false;
-            const lowerQuery = searchQuery.toLowerCase();
-
-            flowData.forEach(flow => {
-                // Cek pencarian di judul atau deskripsi Flow
-                const matchesFlow = flow.title.toLowerCase().includes(lowerQuery) || 
-                                    flow.desc.toLowerCase().includes(lowerQuery);
-                
-                // Cek pencarian di judul, deskripsi atau info pada Steps
-                const matchingSteps = flow.steps.filter(step => 
-                    step.title.toLowerCase().includes(lowerQuery) || 
-                    step.desc.toLowerCase().includes(lowerQuery) ||
-                    (step.info && step.info.toLowerCase().includes(lowerQuery))
-                );
-
-                if (matchesFlow || matchingSteps.length > 0 || searchQuery === '') {
-                    hasResult = true;
-                    // Auto-buka accordion apabila ada pencarian dan nilainya cocok, atau gunakan state sebelumnya
-                    const isExpanded = (searchQuery !== '' && (matchesFlow || matchingSteps.length > 0)) || expandedFlows.has(flow.id);
-                    
-                    html += `
-                    <div class="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm transition-all duration-300">
-                        
-                        <!-- Accordion Header -->
-                        <div class="flex items-center p-3 md:p-4 cursor-pointer hover:bg-gray-50 transition-colors select-none" onclick="toggleFlow('${flow.id}')">
-                            <div class="mr-2 md:mr-3 text-gray-800">
-                                <i data-lucide="${isExpanded ? 'minus' : 'plus'}" class="w-5 h-5 md:w-6 md:h-6"></i>
-                            </div>
-                            <div class="bg-brand text-white p-1.5 md:p-2 rounded-lg mr-2 md:mr-3 shrink-0">
-                                <i data-lucide="trending-up" class="w-5 h-5 md:w-6 md:h-6"></i>
-                            </div>
-                            <div class="flex-1 min-w-0 pr-3 md:pr-4">
-                                <h3 class="font-bold text-[13px] md:text-sm text-gray-900 truncate mb-0.5">${flow.title}</h3>
-                                <p class="text-[11px] md:text-xs text-gray-500 truncate">${flow.desc}</p>
-                            </div>
-                            <div class="shrink-0 bg-brand text-white text-[10px] md:text-[11px] font-bold px-2 md:px-2.5 py-1 rounded-full whitespace-nowrap">
-                                ${flow.stepsCount} step
-                            </div>
-                        </div>
-                        
-                        <!-- Accordion Body (Timeline) -->
-                        <div class="${isExpanded ? 'block' : 'hidden'} border-t border-gray-100 p-4 md:p-5 bg-white relative">
-                            <div class="space-y-0">
-                    `;
-
-                    flow.steps.forEach((step, index) => {
-                        const isLast = index === flow.steps.length - 1;
-                        const lineClass = step.isDotted ? 'border-l-[2px] border-dashed border-gray-300' : 'border-l-[2px] border-solid border-gray-800';
-                        
-                        html += `
-                            <div class="relative flex gap-3 md:gap-4 pb-5 md:pb-6 last:pb-0">
-                                <!-- Vertical Line -->
-                                ${!isLast ? `<div class="absolute left-[13px] top-7 bottom-[-6px] ${lineClass}"></div>` : ''}
-                                
-                                <!-- Circle Indicator -->
-                                <div class="w-7 h-7 rounded-full bg-brand text-white flex items-center justify-center font-bold text-[12px] shrink-0 z-10 relative shadow-sm mt-0.5">
-                                    ${index + 1}
-                                </div>
-                                
-                                <!-- Content Box -->
-                                <div class="flex-1 pt-0.5 pb-0">
-                                    <h4 class="text-[13px] md:text-[14px] font-bold text-gray-900 mb-0.5">${step.title}</h4>
-                                    <p class="text-[11px] md:text-[12px] text-gray-600 mb-2 leading-snug max-w-3xl">${step.desc}</p>
-                                    
-                                    ${step.info ? `
-                                    <div class="bg-blue-50 border border-blue-200/60 rounded-lg p-2 md:p-2.5 flex gap-2 mb-2 max-w-2xl">
-                                        <i data-lucide="info" class="w-4 h-4 text-blue-500 shrink-0 mt-0.5"></i>
-                                        <p class="text-[11px] md:text-[12px] text-blue-700 leading-tight">${step.info}</p>
-                                    </div>
-                                    ` : ''}
-                                    
-                                    ${step.button ? `
-                                    <a href="${step.url}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-brand/30 text-brand rounded-full text-[10px] md:text-[11px] font-semibold hover:bg-brand-light hover:border-brand/50 transition-colors shadow-sm w-fit outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2">
-                                        <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-                                        ${step.button}
-                                    </a>
-                                    ` : ''}
-                                </div>
-                            </div>
-                        `;
-                    });
-
-                    html += `
-                            </div>
-                        </div>
-                    </div>
-                    `;
-                }
-            });
-
-            // Jika pencarian tidak membuahkan hasil
-            if (!hasResult && searchQuery !== '') {
-                html = `
-                <div class="text-center py-10">
-                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 text-gray-400 mb-3">
-                        <i data-lucide="search-x" class="w-6 h-6"></i>
-                    </div>
-                    <p class="text-gray-500 font-medium">Tidak ada panduan flow yang cocok dengan pencarian "${searchQuery}"</p>
-                </div>`;
-            }
-
-            container.innerHTML = html;
-        }
-
         // Fungsi Induk untuk memanggil dan merender konten secara dinamis
         function renderApp() {
             renderTabs();
             
+            const adminContainer = document.getElementById('admin-container');
             const menuContainer = document.getElementById('menu-container');
-            const flowContainer = document.getElementById('flow-container');
 
-            if (activeTab === 'menu') {
+            // Reset display semuanya menjadi hidden
+            adminContainer.style.display = 'none';
+            menuContainer.style.display = 'none';
+
+            // Tampilkan container sesuai dengan activeTab
+            if (activeTab === 'admin') {
+                adminContainer.style.display = 'block';
+                adminContainer.innerHTML = getMenuHTML(menuAdminData, currentSearchQuery);
+            } else if (activeTab === 'menu') {
                 menuContainer.style.display = 'block';
-                flowContainer.style.display = 'none';
-                menuContainer.innerHTML = getMenuHTML(currentSearchQuery);
-            } else {
-                menuContainer.style.display = 'none';
-                flowContainer.style.display = 'block';
-                renderFlowsContent(currentSearchQuery);
+                menuContainer.innerHTML = getMenuHTML(menuData, currentSearchQuery);
             }
 
             // Inisialisasi ikon
@@ -598,10 +427,10 @@
             // Event Listener Pencarian Data
             document.getElementById('searchInput').addEventListener('input', (e) => {
                 currentSearchQuery = e.target.value;
-                if (activeTab === 'menu') {
-                    document.getElementById('menu-container').innerHTML = getMenuHTML(currentSearchQuery);
-                } else {
-                    renderFlowsContent(currentSearchQuery);
+                if (activeTab === 'admin') {
+                    document.getElementById('admin-container').innerHTML = getMenuHTML(menuAdminData, currentSearchQuery);
+                } else if (activeTab === 'menu') {
+                    document.getElementById('menu-container').innerHTML = getMenuHTML(menuData, currentSearchQuery);
                 }
                 lucide.createIcons();
             });
@@ -612,10 +441,8 @@
             const stickyHeader = document.getElementById('sticky-header');
             
             if (window.scrollY > 15) {
-                // Tambahkan sedikit bayangan di header agar batasnya terlihat saat mengambang
                 stickyHeader.classList.add('shadow-[0_10px_20px_-10px_rgba(0,0,0,0.08)]');
             } else {
-                // Hilangkan bayangan
                 stickyHeader.classList.remove('shadow-[0_10px_20px_-10px_rgba(0,0,0,0.08)]');
             }
         });
