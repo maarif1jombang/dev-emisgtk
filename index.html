@@ -116,7 +116,7 @@
             </div>
 
             <!-- Control Bar: Tabs & Search -->
-            <div class="flex flex-row items-center justify-between gap-2 md:gap-4">
+            <div class="flex flex-row items-center justify-between gap-2 md:gap-4 pb-2">
                 
                 <!-- Tabs (Dirender oleh JS) -->
                 <div class="flex items-center gap-2 md:gap-4 overflow-x-auto flex-1 hide-scrollbar" id="tabs-container">
@@ -157,6 +157,8 @@
                     { title: "Beranda", desc: "Halaman utama dashboard", icon: "home", url: "https://dev-emisgtk.kemenag.go.id/dashboard/" },
                     { title: "Daftar Madrasah", desc: "Lihat daftar madrasah tempat bertugas", icon: "building-2", url: "https://dev-emisgtk.kemenag.go.id/instansi/daftar-sm/ptk/" },
                     { title: "Data Diri (Biodata)", desc: "Perbarui data pribadi (identitas, pendidikan, NPWP, dll)", icon: "user-circle", url: "https://dev-emisgtk.kemenag.go.id/identitas/biodata/" },
+					{ title: "Update Golongan & MKG", desc: "Ajukan pembaruan data Golongan & Masa Kerja Golongan", icon: "id-card", url: "https://dev-emisgtk.kemenag.go.id/tunjangan/verval-golongan-mkg/ptk/" },
+					{ title: "Verval Data Kepegawaian", desc: "Ajukan perbaikan data kepegawaian (Golongan, MKG, TMT, SK Pengangkatan) untuk PTK yang diangkat instansi selain Kementerian Agama", icon: "briefcase-business", url: "https://dev-emisgtk.kemenag.go.id/tunjangan/verval-kepegawaian/ptk/" },
 					{ title: "Pengajuan Verval NIK", desc: "Ajukan verifikasi NIK jika data Dukcapil belum valid, dengan mengunggah dokumen KTP", icon: "id-card", url: "https://dev-emisgtk.kemenag.go.id/identitas/pengajuan-nik/" },
                     { title: "Aktivasi PTK", desc: "Aktivasi akun PTK untuk mengakses fitur lengkap", icon: "user-check", url: "https://dev-emisgtk.kemenag.go.id/ptk/aktivasi-ptk/" },
 					{ title: "Akun GWS", desc: "Lihat kredensial Akun Google Workspace for Education (email + password) untuk login ke layanan Google Workspace madrasah", icon: "mail", url: "https://dev-emisgtk.kemenag.go.id/ptk/aktivasi-ptk/" },
@@ -174,8 +176,14 @@
                 section: "Dokumen", icon: "folder",
                 items: [
                     { title: "Data Ijazah", desc: "Kelola data ijazah pendidikan", icon: "graduation-cap", url: "https://dev-emisgtk.kemenag.go.id/ptk/ijazah/" },
-                    { title: "Data Sertifikasi", desc: "Kelola data sertifikasi pendidik", icon: "award", url: "https://dev-emisgtk.kemenag.go.id/ptk/sertifikasi/" },
-					{ title: "Riwayat Pelatihan", desc: "Kelola riwayat pelatihan eksternal yang pernah diikuti", icon: "file-badge", url: "https://dev-emisgtk.kemenag.go.id/diklat/pelatihan-eksternal/" }
+                    { title: "Data Sertifikasi", desc: "Kelola data sertifikasi pendidik", icon: "award", url: "https://dev-emisgtk.kemenag.go.id/ptk/sertifikasi/" }
+                ]
+            },
+			{
+                section: "Pengembangan Diri", icon: "file-badge",
+                items: [
+					{ title: "Riwayat Pelatihan", desc: "Kelola riwayat pelatihan eksternal yang pernah diikuti", icon: "file-badge", url: "https://dev-emisgtk.kemenag.go.id/diklat/pelatihan-eksternal/" },
+					{ title: "Pelatihan Nasional", desc: "Lihat pelatihan tingkat pusat yang ditujukan untuk Anda", icon: "graduation-cap", url: "https://dev-emisgtk.kemenag.go.id/diklat/pelatihan-nasional-saya/" }
                 ]
             },
             {
@@ -208,8 +216,7 @@
 					{ title: "Pengajuan SKBK", desc: "Ajukan Surat Keterangan Beban Kerja", icon: "clipboard-list", url: "https://dev-emisgtk.kemenag.go.id/tunjangan/skbk/" },
                     { title: "Pengajuan NRG", desc: "Ajukan Nomor Registrasi Guru", icon: "id-card", url: "https://dev-emisgtk.kemenag.go.id/tunjangan/nrg/" },
                     { title: "Verval NRG", desc: "Verifikasi validasi Nomor Registrasi Guru", icon: "shield-check", url: "https://dev-emisgtk.kemenag.go.id/tunjangan/ptk/verval-nrg/" },                    
-                    { title: "Dispensasi JTM", desc: "Ajukan dispensasi Jumlah Tatap Muka", icon: "scale", url: "https://dev-emisgtk.kemenag.go.id/ptk/dispensasi-jtm/" },
-					{ title: "Update Golongan & MKG", desc: "Ajukan pembaruan data Golongan & Masa Kerja Golongan", icon: "id-card", url: "https://dev-emisgtk.kemenag.go.id/tunjangan/verval-golongan-mkg/ptk/" }
+                    { title: "Dispensasi JTM", desc: "Ajukan dispensasi Jumlah Tatap Muka", icon: "scale", url: "https://dev-emisgtk.kemenag.go.id/ptk/dispensasi-jtm/" }					
                 ]
             },
             {
@@ -242,7 +249,7 @@
                 items: [
                     { title: "Beranda", desc: "Halaman utama dashboard", icon: "home", url: "https://dev-emisgtk.kemenag.go.id/dashboard/" },
                     { title: "Detail Madrasah", desc: "Lihat detail informasi madrasah sendiri", icon: "building-2", url: "https://dev-emisgtk.kemenag.go.id/instansi/daftar-sm/my/" },
-                    { title: "Aktivasi Madrasah", desc: "Dashboard aktivasi dan status verval madrasah per semester", icon: "shield-check", url: "https://dev-emisgtk.kemenag.go.id/instansi/aktivasi-sm/" }
+                    { title: "Aktivasi Kolektif", desc: "Dashboard aktivasi dan status verval madrasah per semester", icon: "shield-check", url: "https://dev-emisgtk.kemenag.go.id/instansi/aktivasi-sm/" }
                 ]
             },
             {
@@ -356,7 +363,7 @@
                             <h2 class="text-[13px] md:text-lg font-bold text-gray-800">${group.section}</h2>
                             <span class="bg-brand text-white text-[9px] md:text-xs font-bold px-1.5 py-0.5 rounded-full">${filteredItems.length}</span>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5 md:gap-3">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5 md:gap-3">
                     `;
                     
                     filteredItems.forEach(item => {
@@ -373,7 +380,7 @@
                                     </div>
                                 </div>
                                 <div class="text-gray-300 shrink-0 group-hover:text-brand transition-colors duration-200 transform group-hover:translate-x-1 ml-2">
-                                    <i data-lucide="arrow-right" class="w-3.5 h-3.5 md:w-4 md:h-4"></i>
+                                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
                                 </div>
                             </a>
                         `;
