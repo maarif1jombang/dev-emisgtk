@@ -116,7 +116,7 @@
             </div>
 
             <!-- Control Bar: Tabs & Search -->
-            <div class="flex flex-row items-center justify-between gap-2 md:gap-4 pb-2">
+            <div class="flex flex-row items-center justify-between gap-2 md:gap-4">
                 
                 <!-- Tabs (Dirender oleh JS) -->
                 <div class="flex items-center gap-2 md:gap-4 overflow-x-auto flex-1 hide-scrollbar" id="tabs-container">
@@ -136,12 +136,11 @@
         </div>
 
         <!-- Containers -->
-        <div id="admin-container" class="space-y-4 md:space-y-6 hidden">
-            <!-- Konten Daftar Menu Admin -->
-        </div>
-
         <div id="menu-container" class="space-y-4 md:space-y-6 hidden">
             <!-- Konten Daftar Menu -->
+        </div>
+		<div id="admin-container" class="space-y-4 md:space-y-6 hidden">
+            <!-- Konten Daftar Menu Admin -->
         </div>
 
     </div>
@@ -324,7 +323,7 @@
         function renderTabs() {
             const container = document.getElementById('tabs-container');
             
-            const baseClass = "h-9 px-4 md:px-5 rounded-full font-medium text-xs md:text-sm flex items-center justify-center gap-2 transition-colors whitespace-nowrap outline-none focus:ring-2 focus:ring-brand focus:ring-offset-1";
+            const baseClass = "h-8 md:h-9 px-4 md:px-5 rounded-full font-medium text-xs md:text-sm flex items-center justify-center gap-2 transition-colors whitespace-nowrap outline-none focus:ring-2 focus:ring-brand focus:ring-offset-1";
             const activeClass = "bg-brand text-white shadow-sm";
             const inactiveClass = "bg-gray-200 text-gray-600 hover:bg-gray-300";
 
@@ -358,7 +357,7 @@
                     hasResult = true;
                     html += `
                     <div class="menu-section">
-                        <div class="flex items-center gap-2 mb-2">
+                        <div class="flex items-center gap-2 mb-2 pt-1">
                             <i data-lucide="${group.icon}" class="w-4 h-4 md:w-5 md:h-5 text-brand"></i>
                             <h2 class="text-[13px] md:text-lg font-bold text-gray-800">${group.section}</h2>
                             <span class="bg-brand text-white text-[9px] md:text-xs font-bold px-1.5 py-0.5 rounded-full">${filteredItems.length}</span>
