@@ -33,7 +33,7 @@
         body {
             background-color: #FAFBFC;
         }
-        /* Custom scrollbar for better appearance */
+        /* Custom scrollbar untuk tampilan yang lebih baik */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -48,7 +48,7 @@
             background: #94a3b8; 
         }
 
-        /* Marquee Animation Classes */
+        /* Kelas Animasi Running Text */
         .marquee-wrapper {
             flex: 1;
             overflow: hidden;
@@ -87,7 +87,7 @@
             <!-- Breadcrumb & Running Text -->
             <div class="bg-white border border-gray-200 rounded-xl p-3 md:p-3.5 mb-3 md:mb-4 flex items-center text-xs md:text-sm text-gray-500 shadow-sm w-full">
                 
-                <!-- Breadcrumb (Static) -->
+                <!-- Breadcrumb (Statik) -->
                 <div class="flex items-center shrink-0 pr-3 md:pr-4">
                     <i data-lucide="home" class="w-4 h-4 mr-2 text-gray-500"></i>
                     <a href="#" class="hover:text-brand transition-colors">Beranda</a>
@@ -95,8 +95,8 @@
                     <span class="text-brand font-medium">Peta Situs</span>
                 </div>
 
-                <!-- Divider -->
-                <div class="w-px h-4 bg-white shrink-0 mr-3 md:mr-4"></div>
+                <!-- Pembatas (Divider) -->
+                <div class="w-px h-4 bg-gray-200 shrink-0 mr-3 md:mr-4"></div>
 
                 <!-- Running Text (Marquee) -->
                 <div class="marquee-wrapper text-gray-500">
@@ -118,7 +118,7 @@
             <!-- Control Bar: Tabs & Search -->
             <div class="flex flex-row items-center justify-between gap-2 md:gap-4">
                 
-                <!-- Tabs (Dirender oleh JS) -->
+                <!-- Tabs (Dibuat otomatis oleh JS) -->
                 <div class="flex items-center gap-2 md:gap-4 overflow-x-auto flex-1 hide-scrollbar" id="tabs-container">
                     <!-- Isi Tab akan digenerate otomatis -->
                 </div>
@@ -135,20 +135,15 @@
             </div>
         </div>
 
-        <!-- Containers -->
-        <div id="menu-container" class="space-y-4 md:space-y-6 hidden">
-            <!-- Konten Daftar Menu -->
-        </div>
-		<div id="admin-container" class="space-y-4 md:space-y-6 hidden">
-            <!-- Konten Daftar Menu Admin -->
+        <!-- Container Utama -->
+        <div id="main-container" class="space-y-4 md:space-y-6">
+            <!-- Konten Daftar Menu akan diisi secara dinamis -->
         </div>
 
     </div>
 
     <script>
         // ======= DATA MENU GTK =======
-        const defaultUrl = "https://dev-emisgtk.kemenag.go.id/sitemaps/";
-        
         const menuData = [
             {
                 section: "Menu Utama", icon: "home",
@@ -156,12 +151,12 @@
                     { title: "Beranda", desc: "Halaman utama dashboard", icon: "home", url: "https://dev-emisgtk.kemenag.go.id/dashboard/" },
                     { title: "Daftar Madrasah", desc: "Lihat daftar madrasah tempat bertugas", icon: "building-2", url: "https://dev-emisgtk.kemenag.go.id/instansi/daftar-sm/ptk/" },
                     { title: "Data Diri (Biodata)", desc: "Perbarui data pribadi (identitas, pendidikan, NPWP, dll)", icon: "user-circle", url: "https://dev-emisgtk.kemenag.go.id/identitas/biodata/" },
-					{ title: "Update Golongan & MKG", desc: "Ajukan pembaruan data Golongan & Masa Kerja Golongan", icon: "id-card", url: "https://dev-emisgtk.kemenag.go.id/tunjangan/verval-golongan-mkg/ptk/" },
-					{ title: "Verval Data Kepegawaian", desc: "Ajukan perbaikan data kepegawaian (Golongan, MKG, TMT, SK Pengangkatan) untuk PTK yang diangkat instansi selain Kementerian Agama", icon: "briefcase-business", url: "https://dev-emisgtk.kemenag.go.id/tunjangan/verval-kepegawaian/ptk/" },
-					{ title: "Pengajuan Verval NIK", desc: "Ajukan verifikasi NIK jika data Dukcapil belum valid, dengan mengunggah dokumen KTP", icon: "id-card", url: "https://dev-emisgtk.kemenag.go.id/identitas/pengajuan-nik/" },
+                    { title: "Update Golongan & MKG", desc: "Ajukan pembaruan data Golongan & Masa Kerja Golongan", icon: "id-card", url: "https://dev-emisgtk.kemenag.go.id/tunjangan/verval-golongan-mkg/ptk/" },
+                    { title: "Verval Data Kepegawaian", desc: "Ajukan perbaikan data kepegawaian (Golongan, MKG, TMT, SK Pengangkatan) untuk PTK yang diangkat instansi selain Kementerian Agama", icon: "briefcase-business", url: "https://dev-emisgtk.kemenag.go.id/tunjangan/verval-kepegawaian/ptk/" },
+                    { title: "Pengajuan Verval NIK", desc: "Ajukan verifikasi NIK jika data Dukcapil belum valid, dengan mengunggah dokumen KTP", icon: "id-card", url: "https://dev-emisgtk.kemenag.go.id/identitas/pengajuan-nik/" },
                     { title: "Aktivasi PTK", desc: "Aktivasi akun PTK untuk mengakses fitur lengkap", icon: "user-check", url: "https://dev-emisgtk.kemenag.go.id/ptk/aktivasi-ptk/" },
-					{ title: "Akun GWS", desc: "Lihat kredensial Akun Google Workspace for Education (email + password) untuk login ke layanan Google Workspace madrasah", icon: "mail", url: "https://dev-emisgtk.kemenag.go.id/ptk/akun-gws/" },
-					{ title: "Verval Inpassing", desc: "Verifikasi validasi data inpassing untuk PTK Non-ASN", icon: "award", url: "https://dev-emisgtk.kemenag.go.id/tunjangan/inpassing/" }
+                    { title: "Akun GWS", desc: "Lihat kredensial Akun Google Workspace for Education (email + password) untuk login ke layanan Google Workspace madrasah", icon: "mail", url: "https://dev-emisgtk.kemenag.go.id/ptk/akun-gws/" },
+                    { title: "Verval Inpassing", desc: "Verifikasi validasi data inpassing untuk PTK Non-ASN", icon: "award", url: "https://dev-emisgtk.kemenag.go.id/tunjangan/inpassing/" }
                 ]
             },
             {
@@ -178,11 +173,11 @@
                     { title: "Data Sertifikasi", desc: "Kelola data sertifikasi pendidik", icon: "award", url: "https://dev-emisgtk.kemenag.go.id/ptk/sertifikasi/" }
                 ]
             },
-			{
+            {
                 section: "Pengembangan Diri", icon: "file-badge",
                 items: [
-					{ title: "Riwayat Pelatihan", desc: "Kelola riwayat pelatihan eksternal yang pernah diikuti", icon: "file-badge", url: "https://dev-emisgtk.kemenag.go.id/diklat/pelatihan-eksternal/" },
-					{ title: "Pelatihan Nasional", desc: "Lihat pelatihan tingkat pusat yang ditujukan untuk Anda", icon: "graduation-cap", url: "https://dev-emisgtk.kemenag.go.id/diklat/pelatihan-nasional-saya/" }
+                    { title: "Riwayat Pelatihan", desc: "Kelola riwayat pelatihan eksternal yang pernah diikuti", icon: "file-badge", url: "https://dev-emisgtk.kemenag.go.id/diklat/pelatihan-eksternal/" },
+                    { title: "Pelatihan Nasional", desc: "Lihat pelatihan tingkat pusat yang ditujukan untuk Anda", icon: "graduation-cap", url: "https://dev-emisgtk.kemenag.go.id/diklat/pelatihan-nasional-saya/" }
                 ]
             },
             {
@@ -190,17 +185,17 @@
                 items: [
                     { title: "Tugas Tambahan", desc: "Lihat tugas tambahan yang diemban (Kepala, Wakil, Wali Kelas, dll)", icon: "briefcase-business", url: "https://dev-emisgtk.kemenag.go.id/ptk/tugas-tambahan/self/" },
                     { title: "Jadwal Mengajar", desc: "Lihat jadwal mengajar yang telah diinput oleh Admin Sekolah", icon: "calendar-days", url: "https://dev-emisgtk.kemenag.go.id/ptk/jadwal-mengajar/" },
-					{ title: "Perhitungan JTM", desc: "Lihat perhitungan Jumlah Tatap Muka", icon: "calculator", url: "https://dev-emisgtk.kemenag.go.id/ptk/jtm/" }
+                    { title: "Perhitungan JTM", desc: "Lihat perhitungan Jumlah Tatap Muka", icon: "calculator", url: "https://dev-emisgtk.kemenag.go.id/ptk/jtm/" }
                 ]
             },
-			{
+            {
                 section: "Satminkal", icon: "shield-check",
                 items: [
                     { title: "Pengajuan Verval Satminkal", desc: "Ajukan verifikasi dan validasi satminkal", icon: "shield-check", url: "https://dev-emisgtk.kemenag.go.id/ptk/non-satminkal/pengajuan/verval-satminkal/" },
-					{ title: "Mutasi - Alih Fungsi", desc: "Daftar pengajuan alih fungsi", icon: "arrow-left-right", url: "https://dev-emisgtk.kemenag.go.id/ptk/mutasi-alih-fungsi/" }
+                    { title: "Mutasi - Alih Fungsi", desc: "Daftar pengajuan alih fungsi", icon: "arrow-left-right", url: "https://dev-emisgtk.kemenag.go.id/ptk/mutasi-alih-fungsi/" }
                 ]
             },
-			{
+            {
                 section: "PPG", icon: "file-text",
                 items: [
                     { title: "Pengecekan Persyaratan", desc: "Cek kelengkapan persyaratan PPG Dalam Jabatan", icon: "list-todo", url: "https://dev-emisgtk.kemenag.go.id/sertifikasi/ppg/ptk/" },
@@ -212,7 +207,7 @@
                 section: "Persyaratan TPG", icon: "file-text",
                 items: [
                     { title: "Pengajuan SKMT", desc: "Ajukan Surat Keterangan Melaksanakan Tugas", icon: "file-text", url: "https://dev-emisgtk.kemenag.go.id/tunjangan/skmt/" },
-					{ title: "Pengajuan SKBK", desc: "Ajukan Surat Keterangan Beban Kerja", icon: "clipboard-list", url: "https://dev-emisgtk.kemenag.go.id/tunjangan/skbk/" },
+                    { title: "Pengajuan SKBK", desc: "Ajukan Surat Keterangan Beban Kerja", icon: "clipboard-list", url: "https://dev-emisgtk.kemenag.go.id/tunjangan/skbk/" },
                     { title: "Pengajuan NRG", desc: "Ajukan Nomor Registrasi Guru", icon: "id-card", url: "https://dev-emisgtk.kemenag.go.id/tunjangan/nrg/" },
                     { title: "Verval NRG", desc: "Verifikasi validasi Nomor Registrasi Guru", icon: "shield-check", url: "https://dev-emisgtk.kemenag.go.id/tunjangan/ptk/verval-nrg/" },                    
                     { title: "Dispensasi JTM", desc: "Ajukan dispensasi Jumlah Tatap Muka", icon: "scale", url: "https://dev-emisgtk.kemenag.go.id/ptk/dispensasi-jtm/" }					
@@ -228,7 +223,7 @@
                 section: "Tunjangan", icon: "star",
                 items: [
                     { title: "Pengajuan Insentif Non-ASN", desc: "Ajukan tunjangan insentif bagi Guru Bukan PNS", icon: "hand-coins", url: "https://dev-emisgtk.kemenag.go.id/tunjangan/pengajuan-insentif/ptk/" },
-					{ title: "Tunjangan Khusus", desc: "Lihat status penetapan sebagai penerima Tunjangan Khusus", icon: "flag", url: "https://dev-emisgtk.kemenag.go.id/tunjangan/tunjangan-khusus/ptk/info-penetapan/" }
+                    { title: "Tunjangan Khusus", desc: "Lihat status penetapan sebagai penerima Tunjangan Khusus", icon: "flag", url: "https://dev-emisgtk.kemenag.go.id/tunjangan/tunjangan-khusus/ptk/info-penetapan/" }
                 ]
             },
             {
@@ -241,7 +236,7 @@
             }
         ];
 		
-		// ======= DATA MENU ADMIN =======
+        // ======= DATA MENU ADMIN =======
         const menuAdminData = [
             {
                 section: "Menu Utama", icon: "home",
@@ -254,7 +249,7 @@
             {
                 section: "Master Data", icon: "database",
                 items: [
-                    { title: "Hari Libur Mingguan", desc: "Atur hari libur mingguan madrasah", icon: "calendar-x", url: "https://dev-emisgtk.kemenag.go.id/master/hari-libur-mingguan/" },
+                    { title: "Hari Libur Mingguan", desc: "Atur hari libur minggu madrasah", icon: "calendar-x", url: "https://dev-emisgtk.kemenag.go.id/master/hari-libur-mingguan/" },
                     { title: "Hari Libur Akademik", desc: "Atur hari libur akademik madrasah", icon: "calendar-clock", url: "https://dev-emisgtk.kemenag.go.id/master/hari-libur-akademik/" }
                 ]
             },
@@ -263,7 +258,7 @@
                 items: [
                     { title: "Manajemen Akun", desc: "Kelola akun PTK di madrasah (generate, reset password, toggle status)", icon: "user-cog", url: "https://dev-emisgtk.kemenag.go.id/akun/manajemen/sekolah/" },
                     { title: "Monitoring Akun PTK", desc: "Pantau status pembuatan akun seluruh PTK satminkal di madrasah", icon: "line-chart", url: "https://dev-emisgtk.kemenag.go.id/akun/manajemen/sekolah/monitoring-ptk/" },
-					{ title: "Manajemen PTK", desc: "Kelola data PTK di madrasah (tambah, edit, nonaktifkan, tarik dari EMIS)", icon: "users", url: "https://dev-emisgtk.kemenag.go.id/ptk/manajemen-ptk/" }
+                    { title: "Manajemen PTK", desc: "Kelola data PTK di madrasah (tambah, edit, nonaktifkan, tarik dari EMIS)", icon: "users", url: "https://dev-emisgtk.kemenag.go.id/ptk/manajemen-ptk/" }
                 ]
             },
             {
@@ -271,10 +266,10 @@
                 items: [
                     { title: "Tugas Tambahan", desc: "Kelola tugas tambahan dan jabatan struktural PTK (Kepala, Wakil, Wali Kelas, dll)", icon: "briefcase-business", url: "https://dev-emisgtk.kemenag.go.id/ptk/tugas-tambahan/" },
                     { title: "Presensi PTK", desc: "Input dan rekap presensi kehadiran PTK per bulan", icon: "calendar-clock", url: "https://dev-emisgtk.kemenag.go.id/ptk/presensi/" },
-					{ title: "Pengajuan Mutasi PTK", desc: "Ajukan mutasi PTK keluar atau terima mutasi PTK masuk", icon: "arrow-left-right", url: "https://dev-emisgtk.kemenag.go.id/ptk/pengajuan-mutasi/" }
+                    { title: "Pengajuan Mutasi PTK", desc: "Ajukan mutasi PTK keluar atau terima mutasi PTK masuk", icon: "arrow-left-right", url: "https://dev-emisgtk.kemenag.go.id/ptk/pengajuan-mutasi/" }
                 ]
             },
-			{
+            {
                 section: "Kesiswaan", icon: "user",
                 items: [
                     { title: "Data Siswa", desc: "Kelola data siswa (import Excel, kenaikan kelas)", icon: "user", url: "https://dev-emisgtk.kemenag.go.id/kesiswaan/siswa/" }
@@ -288,18 +283,18 @@
                     { title: "Pengaturan Jadwal", desc: "Atur template jadwal (jam pelajaran, durasi, istirahat)", icon: "settings", url: "https://dev-emisgtk.kemenag.go.id/pembelajaran/jadwal-model/" },
                     { title: "Plotting Guru BK", desc: "Plotting guru Bimbingan Konseling per rombel", icon: "user-square", url: "https://dev-emisgtk.kemenag.go.id/pembelajaran/plotting-guru-bk/" },
                     { title: "Tambah Jadwal Mengajar", desc: "Input jadwal mengajar PTK (per PTK atau import Excel)", icon: "calendar-days", url: "https://dev-emisgtk.kemenag.go.id/pembelajaran/jadwal/" },
-					{ title: "Pengecekan Linearitas", desc: "Cek kesesuaian mata pelajaran yang diajarkan dengan sertifikasi PTK", icon: "check-square-2", url: "https://dev-emisgtk.kemenag.go.id/pembelajaran/linearitas/" }
+                    { title: "Pengecekan Linearitas", desc: "Cek kesesuaian mata pelajaran yang diajarkan dengan sertifikasi PTK", icon: "check-square-2", url: "https://dev-emisgtk.kemenag.go.id/pembelajaran/linearitas/" }
                 ]
             },
             {
                 section: "Verifikasi Dan Validasi", icon: "badge-check",
                 items: [
                     { title: "Madrasah", desc: "Ajukan PTK non-satminkal dari/ke madrasah lain (Kemenag)", icon: "building-2", url: "https://dev-emisgtk.kemenag.go.id/ptk/pengajuan-non-satminkal/madrasah/" },
-					{ title: "Sekolah", desc: "Ajukan PTK non-satminkal dari/ke sekolah (non-Kemenag)", icon: "building-2", url: "https://dev-emisgtk.kemenag.go.id/ptk/pengajuan-non-satminkal/sekolah/" },
-					{ title: "Verifikasi Non-Satminkal Madrasah", desc: "Verifikasi pengajuan PTK non-satminkal yang masuk ke madrasah", icon: "inbox", url: "https://dev-emisgtk.kemenag.go.id/ptk/verifikasi-non-satminkal/madrasah/" }
+                    { title: "Sekolah", desc: "Ajukan PTK non-satminkal dari/ke sekolah (non-Kemenag)", icon: "building-2", url: "https://dev-emisgtk.kemenag.go.id/ptk/pengajuan-non-satminkal/sekolah/" },
+                    { title: "Verifikasi Non-Satminkal Madrasah", desc: "Verifikasi pengajuan PTK non-satminkal yang masuk ke madrasah", icon: "inbox", url: "https://dev-emisgtk.kemenag.go.id/ptk/verifikasi-non-satminkal/madrasah/" }
                 ]
             },
-			            {
+            {
                 section: "Sync EMIS", icon: "link",
                 items: [
                     { title: "Integrasi EMIS", desc: "Matching data PTK lokal dengan data EMIS (cocokkan SATMINKAL)", icon: "link-2", url: "https://dev-emisgtk.kemenag.go.id/ptk/integrasi-satminkal/" }
@@ -311,36 +306,69 @@
         let activeTab = 'menu';
         let currentSearchQuery = '';
 
-        //        // ======= FUNCTIONS =======
-        
         // Ganti Tab
         function switchTab(tab) {
             activeTab = tab;
             renderApp();
         }
 
+        // Fungsi pembantu untuk menghitung jumlah item yang cocok dengan pencarian
+        function getMatchCount(menuSourceData, searchQuery = '') {
+            let count = 0;
+            const lowerQuery = searchQuery.toLowerCase();
+            menuSourceData.forEach(group => {
+                const filtered = group.items.filter(item => 
+                    item.title.toLowerCase().includes(lowerQuery) || 
+                    item.desc.toLowerCase().includes(lowerQuery)
+                );
+                count += filtered.length;
+            });
+            return count;
+        }
+
         // Render Bagian Tab Navigasi
         function renderTabs() {
             const container = document.getElementById('tabs-container');
             
-            const baseClass = "h-8 md:h-9 px-4 md:px-5 rounded-full font-medium text-xs md:text-sm flex items-center justify-center gap-2 transition-colors whitespace-nowrap outline-none focus:ring-2 focus:ring-brand focus:ring-offset-1";
-            const activeClass = "bg-brand text-white shadow-sm";
-            const inactiveClass = "bg-gray-200 text-gray-600 hover:bg-gray-300";
+            // Hitung jumlah sub-menu aktif berdasarkan pencarian secara real-time
+            const gtkCount = getMatchCount(menuData, currentSearchQuery);
+            const adminCount = getMatchCount(menuAdminData, currentSearchQuery);
+
+            const baseClass = "h-9 px-3 md:px-4 rounded-full font-medium text-xs md:text-sm flex items-center justify-center gap-2 transition-all duration-200 whitespace-nowrap outline-none border";
+            
+            // Status Tab Menu GTK
+            const gtkActive = activeTab === 'menu';
+            const gtkClass = gtkActive 
+                ? `${baseClass} bg-brand text-white border-brand shadow-sm` 
+                : `${baseClass} bg-white text-gray-600 border-gray-200 hover:bg-gray-50`;
+            const gtkBadgeClass = gtkActive 
+                ? "ml-1.5 px-2 py-0.5 text-[10px] md:text-xs font-bold rounded-full bg-white text-brand" 
+                : "ml-1.5 px-2 py-0.5 text-[10px] md:text-xs font-bold rounded-full bg-gray-100 text-gray-500";
+
+            // Status Tab Menu Admin
+            const adminActive = activeTab === 'admin';
+            const adminClass = adminActive 
+                ? `${baseClass} bg-brand text-white border-brand shadow-sm` 
+                : `${baseClass} bg-white text-gray-600 border-gray-200 hover:bg-gray-50`;
+            const adminBadgeClass = adminActive 
+                ? "ml-1.5 px-2 py-0.5 text-[10px] md:text-xs font-bold rounded-full bg-white text-brand" 
+                : "ml-1.5 px-2 py-0.5 text-[10px] md:text-xs font-bold rounded-full bg-gray-100 text-gray-500";
 
             container.innerHTML = `
-                
-                <button onclick="switchTab('menu')" class="${baseClass} ${activeTab === 'menu' ? activeClass : inactiveClass}">
+                <button onclick="switchTab('menu')" class="${gtkClass}">
                     <i data-lucide="user" class="w-4 h-4"></i>
-                    Menu GTK
+                    <span>Menu GTK</span>
+                    <span class="${gtkBadgeClass}">${gtkCount}</span>
                 </button>
-				<button onclick="switchTab('admin')" class="${baseClass} ${activeTab === 'admin' ? activeClass : inactiveClass}">
+                <button onclick="switchTab('admin')" class="${adminClass}">
                     <i data-lucide="shield-check" class="w-4 h-4"></i>
-                    Menu Admin
+                    <span>Menu Admin</span>
+                    <span class="${adminBadgeClass}">${adminCount}</span>
                 </button>
             `;
         }
 
-        // Render HTML untuk Daftar Menu dengan parameter data agar dapat disesuaikan (Menu atau Admin)
+        // Render HTML untuk Daftar Menu berdasarkan Data Sumber & Kata Kunci Pencarian
         function getMenuHTML(menuSourceData, searchQuery = '') {
             let html = '';
             let hasResult = false;
@@ -388,7 +416,7 @@
                 }
             });
 
-            // Jika pencarian tidak membuahkan hasil
+            // Jika pencarian kosong/tidak membuahkan hasil
             if (!hasResult && searchQuery !== '') {
                 html = `
                 <div class="text-center py-10">
@@ -402,50 +430,37 @@
             return html;
         }
 
-        // Fungsi Induk untuk memanggil dan merender konten secara dinamis
+        // Fungsi Utama untuk merender konten secara dinamis ke container tunggal
         function renderApp() {
             renderTabs();
             
-            const adminContainer = document.getElementById('admin-container');
-            const menuContainer = document.getElementById('menu-container');
-
-            // Reset display semuanya menjadi hidden
-            adminContainer.style.display = 'none';
-            menuContainer.style.display = 'none';
-
-            // Tampilkan container sesuai dengan activeTab
-            if (activeTab === 'admin') {
-                adminContainer.style.display = 'block';
-                adminContainer.innerHTML = getMenuHTML(menuAdminData, currentSearchQuery);
-            } else if (activeTab === 'menu') {
-                menuContainer.style.display = 'block';
-                menuContainer.innerHTML = getMenuHTML(menuData, currentSearchQuery);
-            }
-
-            // Inisialisasi ikon
+            const mainContainer = document.getElementById('main-container');
+            const currentData = activeTab === 'admin' ? menuAdminData : menuData;
+            
+            mainContainer.innerHTML = getMenuHTML(currentData, currentSearchQuery);
             lucide.createIcons();
         }
 
-        // --- DOM CONTENT LOADED & EVENTS ---
+        // ======= DOM CONTENT LOADED & EVENTS =======
         document.addEventListener('DOMContentLoaded', () => {
             renderApp();
 
             // Event Listener Pencarian Data
             document.getElementById('searchInput').addEventListener('input', (e) => {
                 currentSearchQuery = e.target.value;
-                if (activeTab === 'admin') {
-                    document.getElementById('admin-container').innerHTML = getMenuHTML(menuAdminData, currentSearchQuery);
-                } else if (activeTab === 'menu') {
-                    document.getElementById('menu-container').innerHTML = getMenuHTML(menuData, currentSearchQuery);
-                }
+                
+                // Update badge counter di tab navigasi secara real-time
+                renderTabs();
+                
+                const currentData = activeTab === 'admin' ? menuAdminData : menuData;
+                document.getElementById('main-container').innerHTML = getMenuHTML(currentData, currentSearchQuery);
                 lucide.createIcons();
             });
         });
 
-        // --- SCROLL EVENT UNTUK STICKY HEADER ---
+        // ======= SCROLL EVENT UNTUK STICKY HEADER =======
         window.addEventListener('scroll', () => {
             const stickyHeader = document.getElementById('sticky-header');
-            
             if (window.scrollY > 15) {
                 stickyHeader.classList.add('shadow-[0_10px_20px_-10px_rgba(0,0,0,0.08)]');
             } else {
