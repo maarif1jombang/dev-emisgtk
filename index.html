@@ -116,10 +116,10 @@
             </div>
 
             <!-- Control Bar: Tabs & Search -->
-            <div class="flex flex-row items-center justify-between gap-2 md:gap-4">
+            <div class="flex flex-row items-center justify-between gap-2 md:gap-3">
                 
                 <!-- Tabs (Dibuat otomatis oleh JS) -->
-                <div class="flex items-center gap-2 md:gap-4 overflow-x-auto flex-1 hide-scrollbar" id="tabs-container">
+                <div class="flex items-center gap-2 md:gap-3 overflow-x-auto flex-1 hide-scrollbar" id="tabs-container">
                     <!-- Isi Tab akan digenerate otomatis -->
                 </div>
                 
@@ -334,7 +334,7 @@
             const gtkCount = getMatchCount(menuData, currentSearchQuery);
             const adminCount = getMatchCount(menuAdminData, currentSearchQuery);
 
-            const baseClass = "h-9 px-3 md:px-4 rounded-full font-semibold text-xs md:text-sm flex items-center justify-center gap-2 transition-all duration-200 whitespace-nowrap outline-none border";
+            const baseClass = "h-9 px-3 rounded-full font-semibold text-xs md:text-sm flex items-center justify-center gap-2 transition-all duration-200 whitespace-nowrap outline-none border";
             
             // Status Tab Menu GTK
             const gtkActive = activeTab === 'menu';
