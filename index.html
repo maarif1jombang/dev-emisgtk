@@ -155,11 +155,11 @@
 			{
                 section: "Portofolio", icon: "folder",
                 items: [
-                    { title: "Data Diri", desc: "Perbarui data pribadi (identitas, pendidikan, NPWP, dll)", icon: "user-circle", url: "https://emisgtk.kemenag.go.id/identitas/biodata/" },
-					{ title: "Akun GWS", desc: "Lihat kredensial Akun Google Workspace for Education (email + password) untuk login ke layanan Google Workspace madrasah", icon: "mail", url: "https://emisgtk.kemenag.go.id/ptk/akun-gws/" },
+                    { title: "Data Diri", desc: "Perbarui data pribadi (identitas, pendidikan, NPWP, dll)", icon: "user-circle", url: "https://emisgtk.kemenag.go.id/identitas/biodata/" },					
 					{ title: "Pengajuan Verval NIK", desc: "Ajukan verifikasi NIK jika data Dukcapil belum valid, dengan mengunggah dokumen KTP", icon: "id-card", url: "https://emisgtk.kemenag.go.id/identitas/pengajuan-nik/" },
                     { title: "Update Golongan & MKG", desc: "Lihat data Golongan, MKG & Gaji Pokok ASN Kemenag bersumber dari SIMPEG (view-only); ASN non-Kemenag dapat mengajukan verval", icon: "id-card", url: "https://emisgtk.kemenag.go.id/tunjangan/verval-golongan-mkg/ptk/" },
                     { title: "Verval Data Kepegawaian", desc: "Ajukan perbaikan data kepegawaian (Golongan, MKG, TMT, SK Pengangkatan) untuk PTK yang diangkat instansi selain Kementerian Agama", icon: "briefcase-business", url: "https://emisgtk.kemenag.go.id/tunjangan/verval-kepegawaian/ptk/" },
+					{ title: "Akun GWS", desc: "Lihat kredensial Akun Google Workspace for Education (email + password) untuk login ke layanan Google Workspace madrasah", icon: "mail", url: "https://emisgtk.kemenag.go.id/ptk/akun-gws/" },
                     { title: "Verval Inpassing", desc: "Lihat status verval inpassing untuk PTK Non-ASN — ajuan dalam proses, calon Inpassing GBPNS, atau Inpassing yang sudah diterbitkan (view-only — pengajuan baru tidak tersedia)", icon: "award", url: "https://emisgtk.kemenag.go.id/tunjangan/inpassing/" }
                 ]
             },
@@ -171,6 +171,7 @@
                     { title: "Data Sertifikasi", desc: "Kelola data sertifikasi pendidik", icon: "award", url: "https://emisgtk.kemenag.go.id/sertifikasi/sertifikasi/ptk/" },
 					{ title: "Pengajuan NRG", desc: "Ajukan Nomor Registrasi Guru", icon: "id-card", url: "https://emisgtk.kemenag.go.id/tunjangan/nrg/" },
                     { title: "Verval NRG", desc: "Verifikasi validasi Nomor Registrasi Guru", icon: "shield-check", url: "https://emisgtk.kemenag.go.id/tunjangan/ptk/verval-nrg/" },
+					{ title: "Klaim NRG", desc: "Klaim NRG yang sudah ada di server ke sistem EMIS-GTK", icon: "shield-check", url: "https://emisgtk.kemenag.go.id/tunjangan/ptk/klaim-nrg/" },
 					{ title: "Alih Fungsi", desc: "Riwayat dan ajauan alih fungsi guru/tendik", icon: "arrow-left-right", url: "https://emisgtk.kemenag.go.id/ptk/mutasi-alih-fungsi/" },
 					{ title: "Pengajuan Verval Satminkal", desc: "Ajukan verifikasi dan validasi satminkal PTK", icon: "shield-check", url: "https://emisgtk.kemenag.go.id/ptk/non-satminkal/pengajuan/verval-satminkal/" }
                 ]
@@ -186,8 +187,7 @@
                 section: "Beban Kerja", icon: "briefcase-business",
                 items: [
                     { title: "Tugas Tambahan", desc: "Lihat tugas tambahan yang diemban (Kepala, Wakil, Wali Kelas, dll)", icon: "briefcase-business", url: "https://emisgtk.kemenag.go.id/ptk/tugas-tambahan/self/" },
-                    { title: "Jadwal Mengajar", desc: "Lihat jadwal mengajar yang telah diinput oleh Admin Sekolah", icon: "calendar-days", url: "https://emisgtk.kemenag.go.id/ptk/jadwal-mengajar/" },
-					{ title: "Verifikasi Jadwal Non-Satminkal", desc: "Approve/reject pengajuan verval SATMINKAL dari PTK", icon: "clipboard-list", url: "https://emisgtk.kemenag.go.id/ptk/non-satminkal/verifikasi/jadwal-mengajar/" },
+                    { title: "Jadwal Mengajar", desc: "Lihat jadwal mengajar yang telah diinput oleh Admin Sekolah", icon: "calendar-days", url: "https://emisgtk.kemenag.go.id/ptk/jadwal-mengajar/" },					
                     { title: "Perhitungan JTM", desc: "Lihat perhitungan Jumlah Tatap Muka", icon: "calculator", url: "https://emisgtk.kemenag.go.id/ptk/jtm/" }
                 ]
             },
@@ -204,7 +204,8 @@
                 items: [
                     { title: "Pengajuan SKMT", desc: "Ajukan Surat Keterangan Melaksanakan Tugas", icon: "file-text", url: "https://emisgtk.kemenag.go.id/tunjangan/skmt/" },
                     { title: "Pengajuan SKBK", desc: "Ajukan Surat Keterangan Beban Kerja", icon: "clipboard-list", url: "https://emisgtk.kemenag.go.id/tunjangan/skbk/" },
-                    { title: "Dispensasi JTM", desc: "Ajukan dispensasi Jumlah Tatap Muka", icon: "scale", url: "https://emisgtk.kemenag.go.id/ptk/dispensasi-jtm/" },					
+                    { title: "Dispensasi JTM", desc: "Ajukan dispensasi Jumlah Tatap Muka", icon: "scale", url: "https://emisgtk.kemenag.go.id/ptk/dispensasi-jtm/" },
+					{ title: "Verifikasi Jadwal Non-Satminkal", desc: "Approve/reject pengajuan verval SATMINKAL dari PTK", icon: "clipboard-list", url: "https://emisgtk.kemenag.go.id/ptk/non-satminkal/verifikasi/jadwal-mengajar/" },
                     { title: "Verifikasi SKMT", desc: "Approve/reject SKMT PTK di madrasah", icon: "file-check", url: "https://emisgtk.kemenag.go.id/tunjangan/skmt-kepala/" },
                     { title: "Verifikasi SKBK", desc: "Approve/reject SKBK PTK di madrasah", icon: "clipboard-check", url: "https://emisgtk.kemenag.go.id/tunjangan/skbk-kepala/" },
 					{ title: "SKAKPT", desc: "Surat Keterangan Aktif Kumulatif Penilaian Tahunan", icon: "file-badge", url: "https://emisgtk.kemenag.go.id/tunjangan/skakpt/" }
@@ -220,7 +221,8 @@
 			{
                 section: "Referensi", icon: "database",
                 items: [
-                    { title: "Hari Libur Mingguan", desc: "Atur hari libur mingguan madrasah", icon: "calendar-x", url: "https://emisgtk.kemenag.go.id/master/hari-libur-mingguan/" },
+                    { title: "Presensi", desc: "Lihat riwayat presensi & informasi hari libur", icon: "calendar-check", url: "https://emisgtk.kemenag.go.id/ptk/presensi/riwayat/" },
+					{ title: "Hari Libur Mingguan", desc: "Atur hari libur mingguan madrasah", icon: "calendar-x", url: "https://emisgtk.kemenag.go.id/master/hari-libur-mingguan/" },
                     { title: "Hari Libur Akademik", desc: "Atur hari libur akademik madrasah", icon: "calendar-clock", url: "https://emisgtk.kemenag.go.id/master/hari-libur-akademik/" }
                 ]
             }
